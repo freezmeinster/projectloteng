@@ -42,7 +42,7 @@ check_git_store(){
 run_backup(){
 	cp -r ~/.ssh/* $TEMP
 	cd $BASE_PATH
-	tar cvf - temp | xz -9ec | openssl enc -a -aes-256-cbc -salt > $GIT_STORE/sshstore.enc
+	tar cf - temp | xz -9ec | openssl enc -a -aes-256-cbc -salt > $GIT_STORE/sshstore.enc
 	cd $GIT_STORE
 	git add sshstore.enc
 	git config user.name "Loteng Backup"
@@ -58,7 +58,7 @@ run_restore(){
 	git pull origin master
 	cd $STAGING
 	rm -fr $STAGING/temp
-	cat $GIT_STORE/sshstore.enc | openssl enc -a -aes-256-cbc -d | xz -dc | tar xvf - 
+	cat $GIT_STORE/sshstore.enc | openssl enc -a -aes-256-cbc -d | xz -dc | tar xf - 
 	cp -f $STAGING/temp/* ~/.ssh/ 
 }
 
