@@ -58,7 +58,7 @@ run_restore(){
 	git pull origin master
 	cd $STAGING
 	rm -fr $STAGING/temp
-	cat $GIT_STORE/sshstore.enc | openssl enc -a -aes-256-cbc -d | xz -dc | tar xf - 
+	cat $GIT_STORE/sshstore.enc | openssl enc -a -aes-256-cbc -md sha256 -d | xz -dc | tar xf - 
 	cp -f $STAGING/temp/* ~/.ssh/ 
 }
 
