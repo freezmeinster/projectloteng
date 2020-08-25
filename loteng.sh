@@ -14,6 +14,9 @@ prepare_base_dir(){
 	if [ ! -d $STAGING ]; then
 		mkdir -p $STAGING
 	fi
+	if [ ! -d ~/.ssh ]; then
+		mkdir -p ~/.ssh
+	fi
 }
 
 check_conf_found(){
